@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/SessionProvider";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 import "./globals.css";
 import Nav from "./components/Nav";
 
@@ -25,7 +26,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body
